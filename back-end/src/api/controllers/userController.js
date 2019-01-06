@@ -70,7 +70,7 @@ function getUser(req, res) {
  * @param {Response} res
  */
 function updateUser(req, res) {
-  //verify that end user has permission to delete this user by checking JSON web token
+  //verify that end user has permission to update this user by checking JSON web token
   var verified = verifyUser(req, res);
 
   if (verified) {
@@ -121,8 +121,8 @@ function deleteUser(req, res) {
  * Verify that the end user has permission to perform this action. This is done by decoding the JSON web token in the x-access-token header. Web token decodes into
  * userId of user that was created when web token was issued. If decoded web token matches the userId requested to perform operations on, verification is succesful
  *
- * @param {*} req
- * @param {*} res
+ * @param {Request} req
+ * @param {Response} res
  * @returns boolean that represents verification status
  */
 function verifyUser(req, res) {
