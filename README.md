@@ -66,7 +66,13 @@ DELETE  delete user with userId
 
 For PUT and DELETE the `authToken` must be provided in HTTP request header as `x-access-token`. 
 
+<h2>Database</h2>
 
+This example requires a local MongoDB Database instance to be running. TODO: make path to database configurable. 
 
+<h2>Comments</h2>
+To run this example locally simply run `npm install` and `npm start` from the root directory. This is intended to be a basic example of a REST API service that permits CRUD operations on a simple JSON object. While the User object on its own is not very useful, the project organization attempts to allow for easy extension for any kind of JSON object. The usage of Express greatly simplfifies the process of hosting a web server and setting up routes. Mongoose simplifies Database operations, and the usage of Mongoose schemas  includes automatic ID generation - resulting in User IDs that are not sequential or easily guessable. 
+
+The inclusion of the JSONWebToken library allows for establishing a method of authetnicating the users of the API. When a new User object is created and added to the Database, an authentication token is generated. Theoretically this would be safeguard against users who were not the account creator from deleting or modifying a User. 
 
 
