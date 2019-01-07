@@ -16,7 +16,6 @@ export default class ReadUser extends React.Component {
     event.preventDefault();
 
     axios.get(`http://localhost:3000/users/${this.state.userId}`).then(res => {
-      console.log(res.data);
       this.setState({
         data: res.data
       });

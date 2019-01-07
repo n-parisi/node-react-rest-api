@@ -70,6 +70,8 @@ function getUser(req, res) {
  * @param {Response} res
  */
 function updateUser(req, res) {
+  console.log(req.headers);
+
   //verify that end user has permission to update this user by checking JSON web token
   var verified = verifyUser(req, res);
 

@@ -1,12 +1,14 @@
 import React from "react";
 import axios from "axios";
 
-export default class CreateUser extends React.Component {
+export default class UpdateUser extends React.Component {
   state = {
+    userId: "",
+    authToken: "",
     username: "",
     birthday: "",
     subscription: "",
-    authToken: ""
+    responseMsg: ""
   };
 
   handleChange = event => {
@@ -21,15 +23,26 @@ export default class CreateUser extends React.Component {
   handleSubmit = event => {
     event.preventDefault();
 
+    console.log("AUTH TOKEN IS" + this.state.authToken);
     axios
-      .post("http://localhost:3000/users", {
-        username: this.state.username,
-        birthday: this.state.birthday,
-        subscription: this.state.subscription
-      })
+      .put(
+        `http://localhost:3000/users/${this.state.userId}`,
+        {
+          username: this.state.username,
+          birthday: this.state.birthday,
+          subscription: this.state.subscription
+        },
+        {
+          headers: {
+            "x-access-token": this.state.authToken,
+            "Content-Type": "application/x-www-form-urlencoded"
+          }
+        }
+      )
       .then(res => {
+        var msg = JSON.stringify(res.data);
         this.setState({
-          authToken: res.data.authToken
+          responseMsg: msg
         });
       });
   };
@@ -39,6 +52,14 @@ export default class CreateUser extends React.Component {
       <div>
         <form onSubmit={this.handleSubmit}>
           <label>
+            UserID:
+            <input type="text" name="userId" onChange={this.handleChange} />
+            <br />
+            Auth Token:
+            <input type="text" name="authToken" onChange={this.handleChange} />
+            <br />
+            <br />
+            <br />
             Username:
             <input type="text" name="username" onChange={this.handleChange} />
             <br />
@@ -53,11 +74,10 @@ export default class CreateUser extends React.Component {
             />
           </label>
           <br />
-          <button type="submit">Create</button>
+          <button type="submit">Delete</button>
         </form>
         <div>
-          Auth Token: <br />
-          <p>{this.state.authToken}</p>
+          <p>{this.state.responseMsg}</p>
         </div>
       </div>
     );

@@ -3,6 +3,8 @@ import ReactDOM from "react-dom";
 import UserList from "./components/UserList";
 import CreateUser from "./components/CreateUser";
 import ReadUser from "./components/ReadUser";
+import DeleteUser from "./components/DeleteUser";
+import UpdateUser from "./components/UpdateUser";
 
 class App extends React.Component {
   render() {
@@ -16,6 +18,12 @@ class App extends React.Component {
         <hr />
         <div>Get information for a user:</div>
         <ReadUser />
+        <hr />
+        <div>Delete a user:</div>
+        <DeleteUser />
+        <hr />
+        <div>Update a user:</div>
+        <UpdateUser />
       </div>
     );
   }

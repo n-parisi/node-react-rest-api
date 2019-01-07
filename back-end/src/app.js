@@ -11,7 +11,7 @@ var mongoose = require("mongoose");
 var bodyParser = require("body-parser");
 var cors = require("cors");
 
-const DATABASE_URL = "mongodb://localhost/UserDB";
+const DATABASE_URL = "mongodb://localhost/TestDatabase";
 
 //import user model so that mongoose schema gets defined and provied to mongoose instance
 var user = require("./api/models/user");
