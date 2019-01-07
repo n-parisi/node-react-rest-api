@@ -1,6 +1,6 @@
 <h1>node-react-rest-api</h1>
 
-A JavaScript implementation of a REST service that supports CRUD operations on a simple arbitrary JSON object. Back-end written with Node.js utilizing the Express framework and Mongoose library. Created for demonstration purposes.
+A JavaScript implementation of a REST service that supports CRUD operations on a simple arbitrary JSON object. Back-end written with Node.js utilizing the Express framework and Mongoose library. Front-end written with React. Created for demonstration purposes.
 
 <h2>back-end</h2>
 
@@ -65,6 +65,12 @@ DELETE  delete user with userId
 ```
 
 For PUT and DELETE the `authToken` must be provided in HTTP request header as `x-access-token`. 
+
+<h2>front-end</h2>
+
+The front end provides a single page web application with a few UI elements for interacting with the REST service. It was written in React to practice and demonstrate fullstack JavaScript development. Currently, there are UI elements for viewing all users, creating a new user, and getting more in depth informtion on a single user. Updating and deleting users will come shortly. 
+
+This front end uses no CSS and is only intended to be an extremely basic example of how a front end written in JavaScript would interact with a REST service.
 
 <h2>Database</h2>
 
