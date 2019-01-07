@@ -9,6 +9,7 @@
 var express = require("express");
 var mongoose = require("mongoose");
 var bodyParser = require("body-parser");
+var cors = require("cors");
 
 const DATABASE_URL = "mongodb://localhost/UserDB";
 
@@ -29,6 +30,10 @@ mongoose.connect(
 //add middleware to express server to parse urlencoded and json body requests, and attach them to req.body
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
+
+//enable cross origin resource sharing by adding middleware library
+//this allows React front end to make HTTP requests
+app.use(cors());
 
 //import userRoutes function. Call with server obj to set up routes
 var userRoutes = require("./api/routes/userRoutes");
