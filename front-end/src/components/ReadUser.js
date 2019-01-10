@@ -4,7 +4,7 @@ import axios from "axios";
 export default class ReadUser extends React.Component {
   state = {
     userId: "",
-    data: ""
+    returnMsg: ""
   };
 
   handleChange = event => {
@@ -16,8 +16,9 @@ export default class ReadUser extends React.Component {
     event.preventDefault();
 
     axios.get(`http://localhost:3000/users/${this.state.userId}`).then(res => {
+      var msg = JSON.stringify(res.data);
       this.setState({
-        data: res.data
+        returnMsg: msg
       });
     });
   };
@@ -35,7 +36,7 @@ export default class ReadUser extends React.Component {
         </form>
         <div>
           User Information: <br />
-          <p>{JSON.stringify(this.state.data, null, 2)}</p>
+          <p>{this.state.returnMsg}</p>
         </div>
       </div>
     );

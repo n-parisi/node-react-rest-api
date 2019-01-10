@@ -5,10 +5,9 @@
  */
 "use strict";
 
-var mongoose = require("mongoose");
 var jwt = require("jsonwebtoken");
 var config = require("../../config");
-var User = mongoose.model("User");
+var User = require("../models/user");
 
 /**
  * Return a list of all Users in database as a JSON response
@@ -17,11 +16,11 @@ var User = mongoose.model("User");
  * @param {Response} res
  */
 function getAllUsers(req, res) {
-  User.find({}, function(err, user) {
+  User.find({}, function(err, users) {
     if (err) {
       return res.send(err);
     }
-    res.json(user);
+    res.json(users);
   });
 }
 
@@ -70,8 +69,6 @@ function getUser(req, res) {
  * @param {Response} res
  */
 function updateUser(req, res) {
-  console.log(req.headers);
-
   //verify that end user has permission to update this user by checking JSON web token
   var verified = verifyUser(req, res);
 
@@ -137,7 +134,8 @@ function verifyUser(req, res) {
     var verified = false;
     jwt.verify(token, config.tokenkey, function(err, decodedToken) {
       if (err) {
-        return res.json({ message: "Failed to authenticate token!" });
+        res.json({ message: "Failed to authenticate token!" });
+        return false;
       }
 
       if (decodedToken.id === req.params.userId) {

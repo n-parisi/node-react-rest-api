@@ -10,11 +10,10 @@ var express = require("express");
 var mongoose = require("mongoose");
 var bodyParser = require("body-parser");
 var cors = require("cors");
+//import user model so that mongoose schema gets defined and provided to mongoose instance
+var user = require("./api/models/user");
 
 const DATABASE_URL = "mongodb://localhost/TestDatabase";
-
-//import user model so that mongoose schema gets defined and provied to mongoose instance
-var user = require("./api/models/user");
 
 //REST service
 var app = express();

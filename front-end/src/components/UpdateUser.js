@@ -23,7 +23,6 @@ export default class UpdateUser extends React.Component {
   handleSubmit = event => {
     event.preventDefault();
 
-    console.log("AUTH TOKEN IS" + this.state.authToken);
     axios
       .put(
         `http://localhost:3000/users/${this.state.userId}`,
@@ -74,7 +73,7 @@ export default class UpdateUser extends React.Component {
             />
           </label>
           <br />
-          <button type="submit">Delete</button>
+          <button type="submit">Update</button>
         </form>
         <div>
           <p>{this.state.responseMsg}</p>
